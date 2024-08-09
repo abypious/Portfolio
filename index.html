@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("T-thOo6gtsqpx41yb");
+   })();
+</script>
+
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -554,32 +562,63 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form id="contact-form">
               <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" required>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="name">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
-                </div>
+                  <div class="form-group col-md-6">
+                      <label for="name">Your Name</label>
+                      <input type="text" name="name" class="form-control" id="name" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="email">Your Email</label>
+                      <input type="email" class="form-control" name="email" id="email" required>
+                  </div>
               </div>
               <div class="form-group">
-                <label for="name">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" required>
+                  <label for="subject">Subject</label>
+                  <input type="text" class="form-control" name="subject" id="subject" required>
               </div>
               <div class="form-group">
-                <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="4" required></textarea>
+                  <label for="message">Message</label>
+                  <textarea class="form-control" name="message" rows="4" required></textarea>
               </div>
               <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
+          </form> 
+          
+          <script type="text/javascript">
+          document.getElementById('contact-form').addEventListener('submit', function(event) {
+              event.preventDefault();
+              
+              // Show loading indicator
+              document.querySelector('.loading').style.display = 'block';
+              
+              // Hide previous messages
+              document.querySelector('.error-message').style.display = 'none';
+              document.querySelector('.sent-message').style.display = 'none';
+          
+              // Send the email
+              emailjs.sendForm('service_r5fhfvf', 'template_z5xg7mv', this)
+                  .then(function() {
+                      // Hide loading indicator
+                      document.querySelector('.loading').style.display = 'none';
+                      
+                      // Show success message
+                      document.querySelector('.sent-message').style.display = 'block';
+                  }, function(error) {
+                      // Hide loading indicator
+                      document.querySelector('.loading').style.display = 'none';
+                      
+                      // Show error message
+                      document.querySelector('.error-message').textContent = 'Failed to send the message. Please try again.';
+                      document.querySelector('.error-message').style.display = 'block';
+                  });
+          });
+          </script>
+          
           </div>
 
         </div>
