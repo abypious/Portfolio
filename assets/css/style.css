@@ -5,6 +5,16 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #272829;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge, and other browsers */
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
 }
 
 a {
@@ -65,7 +75,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s;
   padding: 0 15px;
   background: #040b14;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 #header .profile img {
   margin: 15px auto;
