@@ -562,7 +562,7 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form id="contact-form">
+            <form id="contact-form" class="php-email-form">
               <div class="row">
                   <div class="form-group col-md-6">
                       <label for="name">Your Name</label>
@@ -592,32 +592,22 @@
           <script type="text/javascript">
           document.getElementById('contact-form').addEventListener('submit', function(event) {
               event.preventDefault();
-              
-              // Show loading indicator
               document.querySelector('.loading').style.display = 'block';
-              
-              // Hide previous messages
               document.querySelector('.error-message').style.display = 'none';
               document.querySelector('.sent-message').style.display = 'none';
-          
-              // Send the email
               emailjs.sendForm('service_r5fhfvf', 'template_z5xg7mv', this)
                   .then(function() {
-                      // Hide loading indicator
                       document.querySelector('.loading').style.display = 'none';
-                      
-                      // Show success message
                       document.querySelector('.sent-message').style.display = 'block';
+                      document.getElementById('contact-form').reset();
                   }, function(error) {
-                      // Hide loading indicator
                       document.querySelector('.loading').style.display = 'none';
-                      
-                      // Show error message
                       document.querySelector('.error-message').textContent = 'Failed to send the message. Please try again.';
                       document.querySelector('.error-message').style.display = 'block';
                   });
           });
           </script>
+          
           
           </div>
 
