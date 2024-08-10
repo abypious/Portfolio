@@ -328,12 +328,29 @@ section {
 /*--------------------------------------------------------------
 # Akills
 --------------------------------------------------------------*/
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .skills .progress {
   height: 65px;
   display: block;
   background: none;
   border-radius: 0;
+  width: 48%; 
+  margin-bottom: 20px; 
 }
+
+.skills .progress:nth-child(odd) {
+  float: left;
+}
+
+.skills .progress:nth-child(even) {
+  float: right;
+}
+
 .skills .progress .skill {
   padding: 0;
   margin: 0 0 5px 0;
@@ -344,14 +361,17 @@ section {
   font-family: "Poppins", sans-serif;
   color: #050d18;
 }
+
 .skills .progress .skill .val {
   float: right;
   font-style: normal;
 }
+
 .skills .progress-bar-wrap {
   background: #dce8f8;
   height: 7px;
 }
+
 .skills .progress-bar {
   width: 1px;
   height: 7px;
